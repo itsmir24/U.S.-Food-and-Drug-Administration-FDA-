@@ -21,7 +21,7 @@ WHERE
 GROUP BY 
     ApprovalYear
 ORDER BY 
-    ApprovalYear ASC;
+    ApprovalYear DESC;
  
 
 -- 2. Identify the top three years that got the highest and lowest approvals, in descending and ascending order, respectively.
@@ -149,7 +149,7 @@ FROM Product
 JOIN RegActionDate r ON Product.ApplNo = r.ApplNo
 WHERE r.ActionType = 'AP'
 GROUP BY TECode
-ORDER BY total_approvals;
+ORDER BY total_approvals DESC;
 
 -- 2. Determine the therapeutic evaluation code (TE_Code) with the highest number of Approvals in each year.
 WITH ApprovalsByYearAndTECode AS (
@@ -174,6 +174,6 @@ FROM ApprovalsByYearAndTECode a
 JOIN MaxApprovalsByYear m
 ON a.approval_year = m.approval_year
 AND a.total_approvals = m.max_approvals
-ORDER BY a.approval_year;
+ORDER BY max_approvals desc;
 
 -- End of Analysis 
